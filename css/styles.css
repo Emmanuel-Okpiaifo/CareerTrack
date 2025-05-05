@@ -2006,6 +2006,7 @@ section > *:last-child,
     margin-top: 20px;
     position: relative;
     overflow: hidden;
+    text-decoration: none;
 }
 
 .program-cta::before {
@@ -2322,5 +2323,66 @@ section > *:last-child,
 
     .notify-form {
         width: 100%;
+    }
+}
+
+.popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.popup-overlay.active {
+    display: flex;
+    opacity: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background: linear-gradient(135deg, rgba(17,17,17,0.95), rgba(34,34,34,0.95));
+    padding: 30px 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    text-align: center;
+    max-width: 90%;
+    width: 400px;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.popup-overlay.active .popup-content {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.popup-message {
+    font-size: 1.2rem;
+    color: #fff;
+    line-height: 1.6;
+    margin: 0;
+    background: linear-gradient(45deg, #fff, #999, #fff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@media (max-width: 480px) {
+    .popup-content {
+        padding: 20px;
+    }
+    .popup-message {
+        font-size: 1rem;
     }
 }

@@ -96,3 +96,28 @@ document.addEventListener('DOMContentLoaded', () => {
     createFloatingShapes();
     reveal(); // Initial check for elements in view
 });
+
+// Podcast notification popup functionality
+const podcastForm = document.getElementById('podcast-notify-form');
+const popupOverlay = document.querySelector('.popup-overlay');
+
+if (podcastForm) {
+    podcastForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Show the popup
+        popupOverlay.classList.add('active');
+        
+        // Clear the form
+        podcastForm.reset();
+    });
+}
+
+// Close popup when clicking outside
+if (popupOverlay) {
+    popupOverlay.addEventListener('click', (e) => {
+        if (e.target === popupOverlay) {
+            popupOverlay.classList.remove('active');
+        }
+    });
+}
