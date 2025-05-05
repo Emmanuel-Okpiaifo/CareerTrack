@@ -1,54 +1,98 @@
-document.addEventListener('DOMContentLoaded', function() {
-  // Animate the arrows on hover (vertical stack)
-  document.querySelectorAll('.hero-cta').forEach(btn => {
-    btn.addEventListener('mouseenter', () => {
-      btn.querySelectorAll('.arrow-svg').forEach((arrow, i) => {
-        arrow.style.transition = 'transform 0.3s cubic-bezier(.68,-0.55,.27,1.55)';
-        arrow.style.transform = `translateY(${(i+1)*6}px)`;
-      });
-    });
-    btn.addEventListener('mouseleave', () => {
-      btn.querySelectorAll('.arrow-svg').forEach(arrow => {
-        arrow.style.transform = 'translateY(0)';
-      });
-    });
-  });
-
-  // Simple animated grid for the hero canvas
-  const canvas = document.querySelector('.hero-canvas');
-  if (canvas) {
-    const ctx = canvas.getContext('2d');
-    function resizeCanvas() {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
+// Navbar scroll effect
+window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+    } else {
+        nav.classList.remove('scrolled');
     }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-    let t = 0;
-    function drawGrid() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.save();
-      ctx.strokeStyle = 'rgba(255,255,255,0.08)';
-      ctx.lineWidth = 1;
-      let gridSize = 80;
-      let offset = Math.sin(t/40) * 10;
-      for (let x = offset; x < canvas.width; x += gridSize) {
-        ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, canvas.height);
-        ctx.stroke();
-      }
-      for (let y = offset; y < canvas.height; y += gridSize) {
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(canvas.width, y);
-        ctx.stroke();
-      }
-      ctx.restore();
-      t++;
-      requestAnimationFrame(drawGrid);
-    }
-    drawGrid();
-  }
 });
 
+// Create particles
+function createParticles() {
+    const particles = document.createElement('div');
+    particles.className = 'particles';
+    document.querySelector('#hero').appendChild(particles);
+
+    for (let i = 0; i < 50; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 15 + 's';
+        particle.style.opacity = Math.random();
+        particles.appendChild(particle);
+    }
+}
+
+// Initialize particles
+document.addEventListener('DOMContentLoaded', createParticles);
+
+// Mobile navigation toggle
+const navToggle = document.querySelector('.nav-toggle');
+const navMenu = document.querySelector('nav ul');
+
+navToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    navToggle.classList.toggle('active');
+});
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('nav') && navMenu.classList.contains('active')) {
+        navMenu.classList.remove('active');
+        navToggle.classList.remove('active');
+    }
+});
+
+// Close mobile menu when window is resized above mobile breakpoint
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
+        navMenu.classList.remove('active');
+        navToggle.classList.remove('active');
+    }
+});
+
+// Scroll reveal functionality
+function reveal() {
+    const reveals = document.querySelectorAll('.reveal');
+    
+    reveals.forEach(element => {
+        const windowHeight = window.innerHeight;
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < windowHeight - elementVisible) {
+            element.classList.add('active');
+        }
+    });
+}
+
+window.addEventListener('scroll', reveal);
+
+// Create floating shapes
+function createFloatingShapes() {
+    const sections = document.querySelectorAll('.animated-bg');
+    
+    sections.forEach(section => {
+        const shapes = document.createElement('div');
+        shapes.className = 'floating-shapes';
+        
+        // Create multiple shapes
+        for (let i = 0; i < 15; i++) {
+            const shape = document.createElement('div');
+            shape.className = `shape shape-${Math.ceil(Math.random() * 3)}`;
+            shape.style.left = `${Math.random() * 100}%`;
+            shape.style.top = `${Math.random() * 100}%`;
+            shape.style.animationDelay = `${Math.random() * 5}s`;
+            shapes.appendChild(shape);
+        }
+        
+        section.appendChild(shapes);
+    });
+}
+
+// Initialize animations
+document.addEventListener('DOMContentLoaded', () => {
+    createFloatingShapes();
+    reveal(); // Initial check for elements in view
+});
