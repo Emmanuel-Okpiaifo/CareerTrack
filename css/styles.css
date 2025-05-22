@@ -2313,26 +2313,13 @@ section > *:last-child,
 }
 
 @media (max-width: 768px) {
-    .program-detail-card {
-        padding: 25px;
-    }
-
-    .program-outcomes {
-        padding: 20px;
-    }
-
-    .program-emphasis {
-        padding: 15px 20px;
-        font-size: var(--p-size);
-    }
-
-    .program-outcomes li {
-        padding-left: 25px;
-    }
-
     .program-cta {
-        width: 100%;
+        padding: 12px 25px;
+        font-size: 0.95rem;
+        width: auto;
+        display: inline-block;
         text-align: center;
+        margin: 20px auto 0;
     }
 }
 
@@ -3115,5 +3102,15 @@ header nav ul {
     
     header nav {
         padding: 15px 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .checkmark-list li {
+        padding: 15px 20px 15px 50px;
+    }
+
+    .checkmark-list li::before {
+        left: 20px;
     }
 }
