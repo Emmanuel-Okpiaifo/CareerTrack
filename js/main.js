@@ -148,3 +148,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000);
     });
 });
+
+// Program cards will now display normally in mobile view without carousel functionality
