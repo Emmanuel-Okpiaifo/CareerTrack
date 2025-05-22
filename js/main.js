@@ -52,49 +52,31 @@ window.addEventListener('resize', () => {
     }
 });
 
-// Scroll reveal functionality
-function reveal() {
-    const reveals = document.querySelectorAll('.reveal');
-    
-    reveals.forEach(element => {
-        const windowHeight = window.innerHeight;
-        const elementTop = element.getBoundingClientRect().top;
-        const elementVisible = 150;
-        
-        if (elementTop < windowHeight - elementVisible) {
-            element.classList.add('active');
+// Scroll reveal functionality with IntersectionObserver
+const revealCallback = (entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target); // Stop observing once revealed
         }
     });
-}
+};
 
-window.addEventListener('scroll', reveal);
+const revealObserver = new IntersectionObserver(revealCallback, {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.15
+});
 
-// Create floating shapes
-function createFloatingShapes() {
-    const sections = document.querySelectorAll('.animated-bg');
-    
-    sections.forEach(section => {
-        const shapes = document.createElement('div');
-        shapes.className = 'floating-shapes';
-        
-        // Create multiple shapes
-        for (let i = 0; i < 15; i++) {
-            const shape = document.createElement('div');
-            shape.className = `shape shape-${Math.ceil(Math.random() * 3)}`;
-            shape.style.left = `${Math.random() * 100}%`;
-            shape.style.top = `${Math.random() * 100}%`;
-            shape.style.animationDelay = `${Math.random() * 5}s`;
-            shapes.appendChild(shape);
-        }
-        
-        section.appendChild(shapes);
+function setupReveal() {
+    document.querySelectorAll('.reveal').forEach(element => {
+        revealObserver.observe(element);
     });
 }
 
 // Initialize animations
 document.addEventListener('DOMContentLoaded', () => {
-    createFloatingShapes();
-    reveal(); // Initial check for elements in view
+    setupReveal(); // Initialize reveal animations
 });
 
 // Podcast notification popup functionality
@@ -121,3 +103,48 @@ if (popupOverlay) {
         }
     });
 }
+
+// Guide Popup Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const guidePopup = document.querySelector('.guide-popup-overlay');
+    const guidePopupClose = document.querySelector('.guide-popup-close');
+    const guidePopupForm = document.querySelector('.guide-popup-form');
+
+    // Show popup after a short delay
+    setTimeout(() => {
+        guidePopup.classList.add('active');
+    }, 1000);
+
+    // Close popup when clicking the close button
+    guidePopupClose.addEventListener('click', () => {
+        guidePopup.classList.remove('active');
+    });
+
+    // Close popup when clicking outside
+    guidePopup.addEventListener('click', (e) => {
+        if (e.target === guidePopup) {
+            guidePopup.classList.remove('active');
+        }
+    });
+
+    // Handle form submission
+    guidePopupForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = guidePopupForm.querySelector('input[type="email"]').value;
+        
+        // Here you can add your email collection logic
+        console.log('Email collected:', email);
+        
+        // Show success message
+        const content = guidePopup.querySelector('.guide-popup-content');
+        content.innerHTML = `
+            <h2 class="guide-popup-title">Thank You!</h2>
+            <p class="guide-popup-message">Your guide is being sent to your email. Check your inbox!</p>
+        `;
+        
+        // Close popup after 3 seconds
+        setTimeout(() => {
+            guidePopup.classList.remove('active');
+        }, 3000);
+    });
+});
