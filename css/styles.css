@@ -2034,3 +2034,188 @@ header nav ul {
         background-attachment: scroll;
     }
 }
+
+/* Mobile and Tablet Optimizations */
+@media (max-width: 768px) {
+    /* Hero Section */
+    #hero {
+        min-height: 80vh;
+    }
+
+    .hero-content {
+        padding: 0 15px;
+    }
+
+    #hero h1 {
+        font-size: clamp(2rem, 6vw, 3rem);
+    }
+
+    #hero h2 {
+        font-size: clamp(1.2rem, 4vw, 1.6rem);
+    }
+
+    #hero p {
+        font-size: clamp(0.9rem, 3vw, 1.1rem);
+    }
+
+    .cta-button {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+    }
+
+    /* Programs Section */
+    .programs-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0 15px;
+    }
+
+    .program-card {
+        margin: 0;
+    }
+
+    .program-content {
+        padding: 1.5rem;
+    }
+
+    .program-content h3 {
+        font-size: 1.3rem;
+    }
+
+    .program-content p {
+        font-size: 0.95rem;
+    }
+
+    /* Waitlist Form */
+    #waitlist-form {
+        padding: 1.5rem;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .form-group input,
+    .form-group select {
+        padding: 0.8rem;
+        font-size: 0.95rem;
+    }
+
+    .submit-button {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+    }
+
+    /* Navigation */
+    header nav {
+        padding: 10px 15px;
+    }
+
+    .nav-toggle {
+        display: flex;
+    }
+
+    header nav ul {
+        padding: 1rem 0;
+    }
+
+    header nav ul li a {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+/* Tablet Optimizations */
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* Hero Section */
+    #hero {
+        min-height: 90vh;
+    }
+
+    .hero-content {
+        padding: 0 20px;
+    }
+
+    #hero h1 {
+        font-size: clamp(2.5rem, 7vw, 4rem);
+    }
+
+    #hero h2 {
+        font-size: clamp(1.4rem, 4vw, 1.8rem);
+    }
+
+    /* Programs Section */
+    .programs-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        padding: 0 20px;
+    }
+
+    /* Waitlist Form */
+    #waitlist-form {
+        padding: 2rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.2rem;
+    }
+}
+
+/* Animation Optimizations */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Performance Optimizations */
+@media (prefers-reduced-motion: reduce) {
+    .animate-on-scroll {
+        transition: none;
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) {
+    .program-card:hover,
+    .cta-button:hover,
+    .submit-button:hover {
+        transform: none;
+        box-shadow: none;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .hero-overlay {
+        background: rgba(0, 0, 0, 0.9);
+    }
+    
+    .program-card {
+        border: 2px solid #000;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #000;
+        color: #fff;
+    }
+    
+    .program-card {
+        background: rgba(255, 255, 255, 0.05);
+    }
+    
+    input, select {
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+    }
+}

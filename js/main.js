@@ -200,3 +200,96 @@ window.addEventListener('load', () => {
     heroHeading.textContent = '';
     typeWriter();
 });
+
+// Animation on scroll
+const animateOnScroll = () => {
+    const elements = document.querySelectorAll('.animate-on-scroll');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    elements.forEach(element => {
+        observer.observe(element);
+    });
+};
+
+// Mobile menu handling
+const setupMobileMenu = () => {
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('header nav ul');
+    
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', () => {
+            navToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+    }
+};
+
+// Optimize video loading
+const optimizeVideo = () => {
+    const video = document.querySelector('video');
+    if (video) {
+        // Pause video when not in viewport
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    video.play().catch(() => {});
+                } else {
+                    video.pause();
+                }
+            });
+        }, { threshold: 0.5 });
+
+        videoObserver.observe(video);
+    }
+};
+
+// Handle form submission
+const setupForm = () => {
+    const form = document.getElementById('waitlist-form');
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Add your form submission logic here
+            console.log('Form submitted');
+        });
+    }
+};
+
+// Initialize all features
+document.addEventListener('DOMContentLoaded', () => {
+    animateOnScroll();
+    setupMobileMenu();
+    optimizeVideo();
+    setupForm();
+});
+
+// Handle window resize
+let resizeTimer;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+        // Reinitialize animations if needed
+        animateOnScroll();
+    }, 250);
+});
+
+// Handle scroll performance
+let scrollTimer;
+window.addEventListener('scroll', () => {
+    if (!scrollTimer) {
+        scrollTimer = setTimeout(() => {
+            scrollTimer = null;
+            // Add any scroll-based animations here
+        }, 100);
+    }
+}, { passive: true });
