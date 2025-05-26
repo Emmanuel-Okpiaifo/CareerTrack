@@ -4,12 +4,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Growth Path - Transform your life with our expert-led programs">
     <title>Growth Path</title>
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="./img/9365158-hd_1920_1080_25fps.mp4" as="video" type="video/mp4">
+    <link rel="preload" href="css/styles.css" as="style">
+    <link rel="preload" href="js/main.js" as="script">
+    
+    <!-- Optimize font loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    
+    <!-- Add favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- Main stylesheet -->
     <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Optimize script loading for animations -->
+    <script>
+        // Preload animation-related resources
+        document.addEventListener('DOMContentLoaded', function() {
+            // Preload images that are used in animations
+            const preloadImages = [
+                'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80'
+            ];
+            
+            preloadImages.forEach(src => {
+                const img = new Image();
+                img.src = src;
+            });
+        });
+    </script>
+    
+    <!-- Load main script with animation support -->
+    <script src="js/main.js" defer></script>
 </head>
 
 <body>
@@ -34,7 +69,7 @@
     <main>
         <section id="hero">
             <div class="hero-video-container">
-                <video autoplay muted loop playsinline>
+                <video autoplay muted loop playsinline preload="metadata">
                     <source src="./img/9365158-hd_1920_1080_25fps.mp4" type="video/mp4">
                 </video>
                 <div class="hero-overlay"></div>
@@ -72,7 +107,11 @@
             <div class="programs-grid">
                 <div class="program-card">
                     <div class="program-image">
-                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3" alt="Growth Accelerator">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Growth Accelerator"
+                             loading="lazy"
+                             width="800"
+                             height="600">
                     </div>
                     <div class="program-content">
                         <h3>The Growth Accelerator</h3>
@@ -82,7 +121,11 @@
                 </div>
                 <div class="program-card">
                     <div class="program-image">
-                        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3" alt="Money Accelerator">
+                        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Money Accelerator"
+                             loading="lazy"
+                             width="800"
+                             height="600">
                     </div>
                     <div class="program-content">
                         <h3>The Money Accelerator</h3>
@@ -92,7 +135,11 @@
                 </div>
                 <div class="program-card">
                     <div class="program-image">
-                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3" alt="Knowledge Accelerator">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Knowledge Accelerator"
+                             loading="lazy"
+                             width="800"
+                             height="600">
                     </div>
                     <div class="program-content">
                         <h3>Monetize Your Knowledge</h3>
@@ -102,7 +149,11 @@
                 </div>
                 <div class="program-card">
                     <div class="program-image">
-                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3" alt="Entrepreneurs Bootcamp">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Entrepreneurs Bootcamp"
+                             loading="lazy"
+                             width="800"
+                             height="600">
                     </div>
                     <div class="program-content">
                         <h3>Entrepreneurs Bootcamp & Retreat</h3>
@@ -119,7 +170,11 @@
                     <div class="testimonial-content">
                         <p class="quote">"Growth Path transformed my business and my life. The strategies I learned helped me 10X my revenue in just 6 months."</p>
                         <div class="testimonial-author">
-                            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3" alt="Sarah Johnson">
+                            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
+                                 alt="Sarah Johnson"
+                                 loading="lazy"
+                                 width="150"
+                                 height="150">
                             <div class="author-info">
                                 <h4>Sarah Johnson</h4>
                                 <p>CEO, TechStart Inc.</p>
@@ -194,7 +249,29 @@
             </form>
         </div>
     </div>
-    <script src="js/main.js"></script>
+    
+    <!-- Add animation optimization script -->
+    <script>
+        // Ensure smooth animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Enable hardware acceleration for animations
+            const animatedElements = document.querySelectorAll('.program-card, .testimonial-slide, .cta-button, .guide-popup-content');
+            animatedElements.forEach(element => {
+                element.style.transform = 'translateZ(0)';
+                element.style.backfaceVisibility = 'hidden';
+            });
+            
+            // Optimize video loading
+            const heroVideo = document.querySelector('video');
+            if (heroVideo) {
+                heroVideo.addEventListener('loadedmetadata', function() {
+                    heroVideo.play().catch(function(error) {
+                        console.log("Video autoplay failed:", error);
+                    });
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
