@@ -1,6 +1,6 @@
 // Navbar scroll effect
-window.addEventListener('scroll', () => {
-    const nav = document.querySelector('nav');
+window.addEventListener('scroll', function() {
+    const nav = document.querySelector('header nav');
     if (window.scrollY > 50) {
         nav.classList.add('scrolled');
     } else {
@@ -150,3 +150,53 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Program cards will now display normally in mobile view without carousel functionality
+
+// Typewriter effect for hero heading
+const heroHeading = document.querySelector('#hero h1');
+const text = heroHeading.textContent;
+const phrases = [
+    "10X Your Life.",
+    "10X Your Income.",
+    "10X Your Business.",
+];
+
+let phraseIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+let typingDelay = 150;
+let deletingDelay = 75;
+let pauseDelay = 3000;
+
+function typeWriter() {
+    const currentPhrase = phrases[phraseIndex];
+    
+    if (isDeleting) {
+        // Deleting text
+        heroHeading.textContent = currentPhrase.substring(0, charIndex - 1);
+        charIndex--;
+        typingDelay = deletingDelay;
+    } else {
+        // Typing text
+        heroHeading.textContent = currentPhrase.substring(0, charIndex + 1);
+        charIndex++;
+        typingDelay = 150;
+    }
+
+    // If word is complete
+    if (!isDeleting && charIndex === currentPhrase.length) {
+        isDeleting = true;
+        typingDelay = pauseDelay;
+    } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        typingDelay = 1000;
+    }
+
+    setTimeout(typeWriter, typingDelay);
+}
+
+// Start the typewriter effect when the page loads
+window.addEventListener('load', () => {
+    heroHeading.textContent = '';
+    typeWriter();
+});
