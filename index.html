@@ -204,6 +204,8 @@
                     </div>
                     <div class="form-group">
                         <input type="text" id="country" name="country" placeholder="Country" required>
+                    </div>
+                    <div class="form-group">
                         <select id="program" name="program" required>
                             <option value="">Which program are you interested in?</option>
                             <option value="growth">The Growth Accelerator</option>
@@ -270,6 +272,26 @@
                     });
                 });
             }
+
+            // Handle scroll animations
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.animate-on-scroll');
+                elements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementBottom = element.getBoundingClientRect().bottom;
+                    const isVisible = (elementTop < window.innerHeight) && (elementBottom >= 0);
+                    
+                    if (isVisible) {
+                        element.classList.add('visible');
+                    }
+                });
+            };
+
+            // Initial check for elements in view
+            animateOnScroll();
+
+            // Add scroll event listener
+            window.addEventListener('scroll', animateOnScroll);
         });
     </script>
 </body>

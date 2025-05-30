@@ -1007,6 +1007,8 @@ html {
     border-radius: 8px;
     transition: all 0.3s ease;
     box-sizing: border-box;
+    background-color: #fff;
+    color: #000;
 }
 
 .form-group input:focus,
@@ -1017,22 +1019,28 @@ html {
 }
 
 .submit-button {
-    width: 100%;
-    padding: 1rem;
+    display: inline-block;
+    padding: 1.2rem 3rem;
     font-size: 1.1rem;
     font-weight: 600;
-    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     background: #000;
-    border: none;
-    border-radius: 8px;
+    color: #fff;
+    border: 2px solid #000;
+    border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease;
+    width: 100%;
     box-sizing: border-box;
 }
 
 .submit-button:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    background: #fff;
+    color: #000;
+    border-color: #000;
 }
 
 @media (max-width: 768px) {
@@ -1599,9 +1607,17 @@ header nav ul {
         background: rgba(255, 255, 255, 0.05);
     }
     
-    input, select {
-        background: rgba(255, 255, 255, 0.1);
-        color: #fff;
+    .form-group input,
+    .form-group select {
+        background-color: #fff;
+        color: #000;
+        border-color: #ddd;
+    }
+    
+    .form-group input:focus,
+    .form-group select:focus {
+        border-color: #000;
+        box-shadow: 0 0 0 2px rgba(255,255,255,0.1);
     }
 }
 
