@@ -28,29 +28,49 @@ function createParticles() {
 document.addEventListener('DOMContentLoaded', createParticles);
 
 // Mobile navigation toggle
-const navToggle = document.querySelector('.nav-toggle');
-const navMenu = document.querySelector('nav ul');
+const setupMobileMenu = () => {
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('header nav ul');
+    const body = document.body;
 
-navToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    navToggle.classList.toggle('active');
-});
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            navToggle.classList.toggle('active');
+            body.classList.toggle('menu-open');
+        });
 
-// Close mobile menu when clicking outside
-document.addEventListener('click', (e) => {
-    if (!e.target.closest('nav') && navMenu.classList.contains('active')) {
-        navMenu.classList.remove('active');
-        navToggle.classList.remove('active');
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (navMenu.classList.contains('active') && 
+                !e.target.closest('nav') && 
+                !e.target.closest('.nav-toggle')) {
+                navMenu.classList.remove('active');
+                navToggle.classList.remove('active');
+                body.classList.remove('menu-open');
+            }
+        });
+
+        // Close mobile menu when clicking a link
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                navToggle.classList.remove('active');
+                body.classList.remove('menu-open');
+            });
+        });
+
+        // Close mobile menu on window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                navMenu.classList.remove('active');
+                navToggle.classList.remove('active');
+                body.classList.remove('menu-open');
+            }
+        });
     }
-});
-
-// Close mobile menu when window is resized above mobile breakpoint
-window.addEventListener('resize', () => {
-    if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
-        navMenu.classList.remove('active');
-        navToggle.classList.remove('active');
-    }
-});
+};
 
 // Scroll reveal functionality with IntersectionObserver
 const revealCallback = (entries, observer) => {
@@ -76,7 +96,8 @@ function setupReveal() {
 
 // Initialize animations
 document.addEventListener('DOMContentLoaded', () => {
-    setupReveal(); // Initialize reveal animations
+    setupMobileMenu();
+    setupReveal();
 });
 
 // Podcast notification popup functionality
@@ -221,19 +242,6 @@ const animateOnScroll = () => {
     });
 };
 
-// Mobile menu handling
-const setupMobileMenu = () => {
-    const navToggle = document.querySelector('.nav-toggle');
-    const navMenu = document.querySelector('header nav ul');
-    
-    if (navToggle && navMenu) {
-        navToggle.addEventListener('click', () => {
-            navToggle.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-    }
-};
-
 // Optimize video loading
 const optimizeVideo = () => {
     const video = document.querySelector('video');
@@ -264,14 +272,6 @@ const setupForm = () => {
         });
     }
 };
-
-// Initialize all features
-document.addEventListener('DOMContentLoaded', () => {
-    animateOnScroll();
-    setupMobileMenu();
-    optimizeVideo();
-    setupForm();
-});
 
 // Handle window resize
 let resizeTimer;
