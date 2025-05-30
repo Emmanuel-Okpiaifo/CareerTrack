@@ -2,8 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>Programs - Growth Path</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Growth Path Programs - Transform your life with our expert-led programs">
+    <title>Our Programs - Growth Path</title>
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="css/styles.css" as="style">
+    <link rel="preload" href="js/main.js" as="script">
+    
+    <!-- Optimize font loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    
+    <!-- Add favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- Main stylesheet -->
     <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Load main script -->
+    <script src="js/main.js" defer></script>
 </head>
 <body>
     <header>
@@ -24,101 +43,141 @@
             </ul>
         </nav>
     </header>
+
     <main>
         <section id="programs-hero">
-            <h1>Transform Your Life With Our Programs</h1>
-            <p class="programs-lead">Choose your path to growth, success, and transformation.</p>
+            <div class="programs-hero-image">
+                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" 
+                     alt="Growth Path Programs"
+                     loading="eager"
+                     width="1920"
+                     height="1080">
+                <div class="programs-hero-overlay"></div>
+            </div>
+            <div class="programs-hero-content">
+                <h1 class="animate-on-scroll">Transform Your Life with Our Signature Programs</h1>
+                <p class="animate-on-scroll">Choose your path to growth. Each program is designed to deliver specific, measurable results in your personal and professional life.</p>
+                <a href="#programs" class="animate-on-scroll"><button class="cta-button">Explore Programs</button></a>
+            </div>
         </section>
 
-        <section id="programs-grid">
-            <article class="program-detail-card growth-accelerator">
-                <div class="program-detail-header">
-                    <span class="program-badge">✅ Featured</span>
-                    <h2>The Growth Accelerator</h2>
-                    <p class="program-tagline">Shift your mindset. Build better habits. Transform your life — in just 3 weeks.</p>
-                </div>
-                <div class="program-detail-content">
-                    <p class="program-description">The Growth Accelerator is a powerful 21-day personal transformation journey that helps you break through limitations, develop high-impact habits, and start living with clarity, confidence, and purpose.</p>
-                    <p class="program-emphasis">If you feel stuck, overwhelmed, or ready to evolve — this is your starting point.</p>
-                    <div class="program-outcomes">
-                        <h3>Key Outcomes:</h3>
-                        <ul>
-                            <li>Rewire limiting beliefs and adopt a success mindset</li>
-                            <li>Build productive, life-altering daily habits</li>
-                            <li>Clarify your personal goals and growth strategy</li>
-                            <li>Improve emotional resilience, focus, and consistency</li>
-                        </ul>
+        <section id="journey-paths">
+            <div class="masonry-grid">
+                <article class="path-card growth-accelerator">
+                    <div class="path-image">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" 
+                             alt="Growth Accelerator"
+                             loading="lazy">
+                        <div class="path-overlay"></div>
                     </div>
-                    <a href="index.html#waitlist" class="program-cta">Join The Growth Accelerator</a>
-                </div>
-            </article>
+                    <div class="path-content">
+                        <span class="path-badge">✨ Featured</span>
+                        <h2>The Growth Accelerator</h2>
+                        <p class="path-tagline">Shift your mindset. Build better habits. Transform your life — in just 3 weeks.</p>
+                        <div class="path-description">
+                            <p>The Growth Accelerator is a powerful 21-day personal transformation journey that helps you break through limitations, develop high-impact habits, and start living with clarity, confidence, and purpose.</p>
+                            <p class="path-emphasis">If you feel stuck, overwhelmed, or ready to evolve — this is your starting point.</p>
+                        </div>
+                        <div class="path-outcomes">
+                            <h3>Key Outcomes:</h3>
+                            <ul>
+                                <li>Rewire limiting beliefs and adopt a success mindset</li>
+                                <li>Build productive, life-altering daily habits</li>
+                                <li>Clarify your personal goals and growth strategy</li>
+                                <li>Improve emotional resilience, focus, and consistency</li>
+                            </ul>
+                        </div>
+                        <a href="index.html#waitlist" class="path-cta">Begin Your Growth Journey</a>
+                    </div>
+                </article>
 
-            <article class="program-detail-card money-accelerator">
-                <div class="program-detail-header">
-                    <span class="program-badge">✅ Featured</span>
-                    <h2>The Money Accelerator</h2>
-                    <p class="program-tagline">Master your money. Shift your financial future. In just 2 weeks.</p>
-                </div>
-                <div class="program-detail-content">
-                    <p class="program-description">The Money Accelerator is a 14-day reset that transforms the way you think about, attract, and manage money.</p>
-                    <p class="program-emphasis">It's built for anyone ready to stop surviving and start growing — financially, mentally, and practically.</p>
-                    <div class="program-outcomes">
-                        <h3>Key Outcomes:</h3>
-                        <ul>
-                            <li>Reprogram your money mindset and remove financial blocks</li>
-                            <li>Build habits that support saving, investing, and earning</li>
-                            <li>Set clear, achievable financial goals</li>
-                            <li>Take control of your finances with structure and confidence</li>
-                        </ul>
+                <article class="path-card knowledge-accelerator">
+                    <div class="path-image">
+                        <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" 
+                             alt="Knowledge Monetization"
+                             loading="lazy">
+                        <div class="path-overlay"></div>
                     </div>
-                    <a href="index.html#waitlist" class="program-cta">Join The Money Accelerator</a>
-                </div>
-            </article>
+                    <div class="path-content">
+                        <h2>Knowledge Monetization Accelerator</h2>
+                        <p class="path-tagline">Turn what you know into income — faster than you ever thought possible.</p>
+                        <div class="path-description">
+                            <p>Learn how to package your skills, story, and expertise into profitable digital products, coaching programs, or courses — even if you're starting from scratch.</p>
+                            <p class="path-emphasis">If you've ever said, "I know things, but I don't know how to sell them," this program is your blueprint to launch with clarity and confidence.</p>
+                        </div>
+                        <div class="path-outcomes">
+                            <h3>Key Outcomes:</h3>
+                            <ul>
+                                <li>Identify your most profitable knowledge assets</li>
+                                <li>Package your skills into offers people are willing to pay for</li>
+                                <li>Build a simple, scalable income stream</li>
+                                <li>Launch with confidence — even without a huge audience</li>
+                            </ul>
+                        </div>
+                        <a href="index.html#waitlist" class="path-cta">Launch Your Knowledge Business</a>
+                    </div>
+                </article>
 
-            <article class="program-detail-card knowledge-accelerator">
-                <div class="program-detail-header">
-                    <h2>Monetize Your Knowledge Accelerator</h2>
-                    <p class="program-tagline">Turn what you know into income — faster than you ever thought possible.</p>
-                </div>
-                <div class="program-detail-content">
-                    <p class="program-description">Learn how to package your skills, story, and expertise into profitable digital products, coaching programs, or courses — even if you're starting from scratch.</p>
-                    <p class="program-emphasis">If you've ever said, "I know things, but I don't know how to sell them," this program is your blueprint to launch with clarity and confidence.</p>
-                    <div class="program-outcomes">
-                        <h3>Key Outcomes:</h3>
-                        <ul>
-                            <li>Identify your most profitable knowledge assets</li>
-                            <li>Package your skills into offers people are willing to pay for</li>
-                            <li>Build a simple, scalable income stream</li>
-                            <li>Launch with confidence — even without a huge audience</li>
-                        </ul>
+                <article class="path-card founders-retreat">
+                    <div class="path-image">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" 
+                             alt="Founders Retreat"
+                             loading="lazy">
+                        <div class="path-overlay"></div>
                     </div>
-                    <a href="index.html#waitlist" class="program-cta">Join The Knowledge Accelerator</a>
-                </div>
-            </article>
+                    <div class="path-content">
+                        <span class="path-badge">✨ Featured</span>
+                        <h2>Founders Retreat & Accelerator</h2>
+                        <p class="path-tagline">Accelerate your business growth — with strategy, mentorship, and execution support.</p>
+                        <div class="path-description">
+                            <p>This intensive experience is built for founders and business owners ready to scale with clarity and structure.</p>
+                            <p class="path-emphasis">Through hands-on workshops, expert mentorship, and strategic focus sessions, you'll move from overwhelm to momentum — and reconnect with your entrepreneurial fire.</p>
+                        </div>
+                        <div class="path-outcomes">
+                            <h3>Key Outcomes:</h3>
+                            <ul>
+                                <li>Refine your business model and growth plan</li>
+                                <li>Learn practical marketing, sales, and operations strategies</li>
+                                <li>Build critical business systems for scalability</li>
+                                <li>Recharge, refocus, and connect with a powerful peer community</li>
+                            </ul>
+                        </div>
+                        <a href="index.html#waitlist" class="path-cta">Join The Founders Retreat</a>
+                    </div>
+                </article>
 
-            <article class="program-detail-card entrepreneurs-bootcamp">
-                <div class="program-detail-header">
-                    <span class="program-badge">✅ Featured</span>
-                    <h2>Entrepreneurs Bootcamp & Retreat</h2>
-                    <p class="program-tagline">Accelerate your business growth — with strategy, mentorship, and execution support.</p>
-                </div>
-                <div class="program-detail-content">
-                    <p class="program-description">This intensive experience is built for founders and business owners ready to scale with clarity and structure.</p>
-                    <p class="program-emphasis">Through hands-on workshops, expert mentorship, and strategic focus sessions, you'll move from overwhelm to momentum — and reconnect with your entrepreneurial fire.</p>
-                    <div class="program-outcomes">
-                        <h3>Key Outcomes:</h3>
-                        <ul>
-                            <li>Refine your business model and growth plan</li>
-                            <li>Learn practical marketing, sales, and operations strategies</li>
-                            <li>Build critical business systems for scalability</li>
-                            <li>Recharge, refocus, and connect with a powerful peer community</li>
-                        </ul>
+                <article class="path-card wealth-accelerator">
+                    <div class="path-image">
+                        <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" 
+                             alt="Wealth Accelerator"
+                             loading="lazy">
+                        <div class="path-overlay"></div>
                     </div>
-                    <a href="index.html#waitlist" class="program-cta">Join The Entrepreneurs Bootcamp</a>
-                </div>
-            </article>
+                    <div class="path-content">
+                        <span class="path-badge">✨ Featured</span>
+                        <h2>The Wealth Accelerator</h2>
+                        <p class="path-tagline">Master your money. Shift your financial future. In just 2 weeks.</p>
+                        <div class="path-description">
+                            <p>The Wealth Accelerator is a 14-day reset that transforms the way you think about, attract, and manage money.</p>
+                            <p class="path-emphasis">It's built for anyone ready to stop surviving and start growing — financially, mentally, and practically.</p>
+                        </div>
+                        <div class="path-outcomes">
+                            <h3>Key Outcomes:</h3>
+                            <ul>
+                                <li>Reprogram your money mindset and remove financial blocks</li>
+                                <li>Build habits that support saving, investing, and earning</li>
+                                <li>Set clear, achievable financial goals</li>
+                                <li>Take control of your finances with structure and confidence</li>
+                            </ul>
+                        </div>
+                        <a href="index.html#waitlist" class="path-cta">Start Your Wealth Journey</a>
+                    </div>
+                </article>
+            </div>
         </section>
-    </main>    <footer>
+    </main>
+
+    <footer>
         <div class="footer-content">
             <div class="footer-logo">
                 <span class="logo-text">GROWTH</span><span class="logo-highlight">path</span>
@@ -138,6 +197,36 @@
             <p>&copy; 2025 Growth Path. All rights reserved.</p>
         </div>
     </footer>
-    <script src="js/main.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Enable hardware acceleration for animations
+            const animatedElements = document.querySelectorAll('.programs-hero-content > *, .cta-button');
+            animatedElements.forEach(element => {
+                element.style.transform = 'translateZ(0)';
+                element.style.backfaceVisibility = 'hidden';
+            });
+
+            // Handle scroll animations
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.animate-on-scroll');
+                elements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementBottom = element.getBoundingClientRect().bottom;
+                    const isVisible = (elementTop < window.innerHeight) && (elementBottom >= 0);
+                    
+                    if (isVisible) {
+                        element.classList.add('visible');
+                    }
+                });
+            };
+
+            // Initial check for elements in view
+            animateOnScroll();
+
+            // Add scroll event listener
+            window.addEventListener('scroll', animateOnScroll);
+        });
+    </script>
 </body>
 </html>

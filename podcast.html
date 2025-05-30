@@ -2,8 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>The Growth & Leadership Podcast - Growth Path</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Growth & Leadership Podcast - Real conversations with real leaders for real growth">
+    <title>The Growth & Leadership Podcast - Growth Path</title>
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="css/styles.css" as="style">
+    <link rel="preload" href="js/main.js" as="script">
+    
+    <!-- Optimize font loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    
+    <!-- Add favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- Main stylesheet -->
     <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Load main script -->
+    <script src="js/main.js" defer></script>
 </head>
 <body>
     <header>
@@ -24,24 +43,31 @@
             </ul>
         </nav>
     </header>
+
     <main>
         <section id="podcast-hero">
-            <div class="podcast-content">
-                <h1>The Growth & Leadership Podcast</h1>
-                <p class="podcast-tagline">Real conversations. Real leaders. Real growth.</p>
-                <div class="podcast-description">
-                    <p>At Growth Path, we believe powerful conversations create powerful change.</p>
-                    <p>The Leadership & Growth Podcast brings you weekly insights on mindset, money, leadership, and personal growth — from those who are building and becoming.</p>
-                </div>
+            <div class="podcast-hero-image">
+                <img src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" 
+                     alt="The Growth & Leadership Podcast"
+                     loading="eager"
+                     width="1920"
+                     height="1080">
+                <div class="podcast-hero-overlay"></div>
+            </div>
+            <div class="podcast-hero-content">
+                <h1 class="animate-on-scroll">The Growth & Leadership Podcast</h1>
+                <p class="podcast-tagline animate-on-scroll">Real conversations. Real leaders. Real growth.</p>
             </div>
         </section>
 
         <section id="podcast-coming-soon">
             <div class="coming-soon-content">
-                <h2>Coming Soon</h2>
-                <p>Stay tuned for inspiring episodes and practical lessons to help you grow where it matters most.</p>
+                <h2 class="animate-on-scroll">Coming Soon</h2>
+                <p class="animate-on-scroll">At The Growth School, we believe powerful conversations create powerful change.</p>
+                <p class="animate-on-scroll">The Leadership & Growth Podcast brings you weekly insights on mindset, money, leadership, and personal growth — from those who are building and becoming.</p>
+                <p class="animate-on-scroll">Stay tuned for inspiring episodes and practical lessons to help you grow where it matters most.</p>
                 
-                <form id="podcast-notify-form" class="notify-form">
+                <form id="podcast-notify-form" class="notify-form animate-on-scroll">
                     <div class="form-group">
                         <input type="email" id="notify-email" name="email" placeholder="Enter your email address" required>
                         <button type="submit" class="notify-button">Notify Me When Live</button>
@@ -54,7 +80,9 @@
                 <span class="wave-line"></span>
             </div>
         </section>
-    </main>    <footer>
+    </main>
+
+    <footer>
         <div class="footer-content">
             <div class="footer-logo">
                 <span class="logo-text">GROWTH</span><span class="logo-highlight">path</span>
@@ -74,11 +102,54 @@
             <p>&copy; 2025 Growth Path. All rights reserved.</p>
         </div>
     </footer>
+
     <div class="popup-overlay">
         <div class="popup-content">
             <p class="popup-message">You will now be notified when the Growth and Leadership podcast goes live!</p>
         </div>
     </div>
-    <script src="js/main.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Enable hardware acceleration for animations
+            const animatedElements = document.querySelectorAll('.podcast-hero-content > *, .podcast-description p, .coming-soon-content > *');
+            animatedElements.forEach(element => {
+                element.style.transform = 'translateZ(0)';
+                element.style.backfaceVisibility = 'hidden';
+            });
+
+            // Handle scroll animations
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.animate-on-scroll');
+                elements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementBottom = element.getBoundingClientRect().bottom;
+                    const isVisible = (elementTop < window.innerHeight) && (elementBottom >= 0);
+                    
+                    if (isVisible) {
+                        element.classList.add('visible');
+                    }
+                });
+            };
+
+            // Initial check for elements in view
+            animateOnScroll();
+
+            // Add scroll event listener
+            window.addEventListener('scroll', animateOnScroll);
+
+            // Handle form submission
+            const notifyForm = document.getElementById('podcast-notify-form');
+            const popupOverlay = document.querySelector('.popup-overlay');
+
+            notifyForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                popupOverlay.classList.add('active');
+                setTimeout(() => {
+                    popupOverlay.classList.remove('active');
+                }, 3000);
+            });
+        });
+    </script>
 </body>
 </html>
