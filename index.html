@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Growth Path - Transform your life with our expert-led programs">
-    <title>Growth Path</title>
+    <meta name="description" content="GrowthPath - Transform your life with our expert-led programs">
+    <title>GrowthPath</title>
     
     <!-- Preload critical assets -->
     <link rel="preload" href="./img/9365158-hd_1920_1080_25fps.mp4" as="video" type="video/mp4">
@@ -45,13 +45,19 @@
     
     <!-- Load main script with animation support -->
     <script src="js/main.js" defer></script>
+    <style>
+        .logo-img {
+            width: 180px; /* Increased size */
+            height: auto;
+        }
+    </style>
 </head>
 
 <body>
     <header>
         <nav>
             <a href="index.html" class="logo">
-                <span class="logo-text">GROWTH</span><span class="logo-highlight">path</span>
+                <img src="./img/Growthpath/PNGs/G3.png" alt="GrowthPath Logo" class="logo-img">
             </a>
             <div class="nav-toggle" aria-label="Toggle navigation">
                 <span></span>
@@ -76,7 +82,7 @@
             </div>
             <div class="hero-content">
                 <h1 class="animate-on-scroll"></h1>
-                <h2 class="animate-on-scroll">Growth Path is here to transform your life.</h2>
+                <h2 class="animate-on-scroll">GrowthPath is here to transform your life.</h2>
                 <p class="animate-on-scroll">Growth is a choice that you need to make because real growth is never accidental...
                     <br>
                     It's time to grow. It's time to rise. It's time to play big.
@@ -168,7 +174,7 @@
             <div class="testimonial-slider">
                 <div class="testimonial-slide">
                     <div class="testimonial-content">
-                        <p class="quote">"Growth Path transformed my business and my life. The strategies I learned helped me 10X my revenue in just 6 months."</p>
+                        <p class="quote">"GrowthPath transformed my business and my life. The strategies I learned helped me 10X my revenue in just 6 months."</p>
                         <div class="testimonial-author">
                             <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
                                  alt="Sarah Johnson"
@@ -237,13 +243,13 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Growth Path. All rights reserved.</p>
+            <p>&copy; 2025 GrowthPath. All rights reserved.</p>
         </div>
     </footer>
     <div class="guide-popup-overlay">
         <div class="guide-popup-content">
             <button class="guide-popup-close" aria-label="Close popup"></button>
-            <h2 class="guide-popup-title">Get Your Growth Path Bonus Guide</h2>
+            <h2 class="guide-popup-title">Get Your GrowthPath Bonus Guide</h2>
             <p class="guide-popup-message">Enter your email to download your free guide and start your growth journey today!</p>
             <form class="guide-popup-form">
                 <input type="email" placeholder="Enter your email address" required>
@@ -292,6 +298,21 @@
 
             // Add scroll event listener
             window.addEventListener('scroll', animateOnScroll);
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbar = document.querySelector('nav');
+            const logo = document.querySelector('.logo-img');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        logo.src = './img/Growthpath/PNGs/G4.png';
+                    } else {
+                        logo.src = './img/Growthpath/PNGs/G3.png';
+                    }
+                });
+            }, { threshold: 0.5 });
+            observer.observe(navbar);
         });
     </script>
 </body>
