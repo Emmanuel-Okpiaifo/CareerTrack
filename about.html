@@ -4,15 +4,23 @@
     <meta charset="UTF-8">    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About GrowthPath</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Add favicon -->
+    <link rel="icon" type="image/png" href="./img/Growthpath/Web icon-favicon/32x32 px.png">
+    
+    <!-- Main stylesheet -->    
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .logo-img {
+            width: 180px;
+            height: auto;
+        }
+    </style>
 </head>
-<body>
-    <header>
+<body>    <header>
         <nav>
             <a href="index.html" class="logo">
-                <span class="logo-text">GROWTH</span><span class="logo-highlight">path</span>
+                <img src="./img/Growthpath/PNGs/G3.png" alt="GrowthPath Logo" class="logo-img">
             </a>
             <div class="nav-toggle" aria-label="Toggle navigation">
                 <span></span>
@@ -310,9 +318,8 @@
         </section>
     </main>
     <footer>
-        <div class="footer-content">
-            <div class="footer-logo">
-                <span class="logo-text">GROWTH</span><span class="logo-highlight">path</span>
+        <div class="footer-content">            <div class="footer-logo">
+                <img src="./img/Growthpath/PNGs/G8.png" alt="GrowthPath Logo" class="footer-logo-img">
             </div>
             <div class="footer-links">
                 <a href="about.html">About</a>
@@ -328,7 +335,23 @@
         <div class="footer-bottom">
             <p>&copy; 2025 GrowthPath. All rights reserved.</p>
         </div>
-    </footer>
-    <script src="js/main.js"></script>
+    </footer>    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const logo = document.querySelector('.logo-img');
+            
+            // Set initial logo based on scroll position
+            logo.src = window.scrollY > 50 ? './img/Growthpath/PNGs/G3.png' : './img/Growthpath/PNGs/G4.png';
+            
+            // Handle logo change on scroll
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    logo.src = './img/Growthpath/PNGs/G3.png'; // Light logo for dark navbar
+                } else {
+                    logo.src = './img/Growthpath/PNGs/G4.png'; // Dark logo for light navbar
+                }
+            });
+        });
+    </script>
 </body>
 </html>

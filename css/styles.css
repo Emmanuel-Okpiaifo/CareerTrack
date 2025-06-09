@@ -182,8 +182,8 @@ button:hover {
 
 /* Navbar styles */
 header nav {
-    background: transparent;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     padding: 20px;
     position: fixed;
     width: 100%;
@@ -198,22 +198,6 @@ header nav {
 
 header nav.scrolled {
     background: #000;
-    padding: 15px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-header nav.scrolled .logo,
-header nav.scrolled .logo-text,
-header nav.scrolled .logo-highlight {
-    color: #fff;
-}
-
-header nav.scrolled .logo-text::after {
-    background: linear-gradient(90deg, #fff, transparent);
-}
-
-header nav.scrolled .logo-highlight::before {
-    background: rgba(255, 255, 255, 0.1);
 }
 
 header nav ul {
@@ -226,7 +210,7 @@ header nav ul {
 }
 
 header nav ul li a {
-    color: #fff;
+    color: #000;  /* Black text for white background */
     text-decoration: none;
     font-size: 1.1rem;
     font-weight: 500;
@@ -236,6 +220,11 @@ header nav ul li a {
     transition: all 0.3s ease;
 }
 
+header nav.scrolled ul li a {
+    color: #fff;  /* White text for black background */
+}
+
+/* Hover effect for links */
 header nav ul li a::after {
     content: '';
     position: absolute;
@@ -243,8 +232,12 @@ header nav ul li a::after {
     left: 0;
     width: 0;
     height: 2px;
-    background: #fff;
+    background: #000;  /* Black underline for white background */
     transition: width 0.3s ease;
+}
+
+header nav.scrolled ul li a::after {
+    background: #fff;  /* White underline for black background */
 }
 
 header nav ul li a:hover::after {
@@ -458,6 +451,7 @@ footer {
     font-size: 1.8rem;
     font-weight: 700;
     display: flex;
+    justify-content: center;
     align-items: center;
     gap: 5px;
     position: relative;
@@ -524,6 +518,18 @@ footer p {
 
 .contact-info p {
     margin: 0;
+}
+
+/* Enhanced footer logo styles */
+.footer-logo-img {
+    width: 180px;
+    height: auto;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.footer-logo-img:hover {
+    opacity: 1;
 }
 
 /* Section spacing */
@@ -1098,6 +1104,9 @@ footer {
 .footer-logo {
     font-size: 1.8rem;
     font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .footer-links {
@@ -1486,17 +1495,6 @@ header nav ul {
 
     .form-group {
         margin-bottom: 1rem;
-    }
-
-    .form-group input,
-    .form-group select {
-        padding: 0.8rem;
-        font-size: 0.95rem;
-    }
-
-    .submit-button {
-        padding: 0.8rem 2rem;
-        font-size: 1rem;
     }
 
     /* Navigation */
@@ -2842,7 +2840,7 @@ header nav ul {
     letter-spacing: -1px;
     color: #fff;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        opacity: 0;
+    opacity: 0;
     transform: translateY(20px);
     animation: fadeSlideUp 1s ease forwards;
 }
@@ -3368,7 +3366,6 @@ header nav ul {
     border: 2px solid rgba(0, 0, 0, 0.1);
     border-radius: 50px;
     transition: all 0.3s ease;
-    background: #fff;
 }
 
 .notify-form input[type="email"]:focus {
