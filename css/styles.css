@@ -458,6 +458,16 @@ footer {
     padding: 5px 0;
 }
 
+.footer-logo a {
+    display: block;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.footer-logo a:hover {
+    transform: scale(1.02);
+}
+
 .footer-logo .logo-text {
     position: relative;
     display: inline-block;
@@ -2773,7 +2783,7 @@ header nav ul {
     
     .founder-text p {
         font-size: 1rem;
-    }
+       }
     
     .founder-text p:first-of-type {
         font-size: 1.1rem;
