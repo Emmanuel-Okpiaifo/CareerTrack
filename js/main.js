@@ -8,25 +8,6 @@ window.addEventListener('scroll', function() {
     }
 });
 
-// Create particles
-function createParticles() {
-    const particles = document.createElement('div');
-    particles.className = 'particles';
-    document.querySelector('#hero').appendChild(particles);
-
-    for (let i = 0; i < 50; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 15 + 's';
-        particle.style.opacity = Math.random();
-        particles.appendChild(particle);
-    }
-}
-
-// Initialize particles
-document.addEventListener('DOMContentLoaded', createParticles);
-
 // Mobile navigation toggle
 const setupMobileMenu = () => {
     const navToggle = document.querySelector('.nav-toggle');
@@ -98,6 +79,9 @@ function setupReveal() {
 document.addEventListener('DOMContentLoaded', () => {
     setupMobileMenu();
     setupReveal();
+    // Initialize intersection observer for .animate-on-scroll elements
+    animateOnScroll();
+    setupLogoSwitcher();
 });
 
 // Podcast notification popup functionality
@@ -220,19 +204,6 @@ function typeWriter() {
 document.addEventListener('DOMContentLoaded', () => {
     heroHeading.textContent = '';
     typeWriter();
-
-    const video = document.querySelector('#hero video');
-    if (video) {
-        // Ensure the browser aggressively loads the video and starts playback
-        video.preload = 'auto';
-        video.load();
-        const tryPlay = () => video.play().catch(() => {});
-        if (video.readyState >= 2) {
-            tryPlay();
-        } else {
-            video.addEventListener('loadeddata', tryPlay, { once: true });
-        }
-    }
 });
 
 // Animation on scroll
@@ -255,24 +226,7 @@ const animateOnScroll = () => {
     });
 };
 
-// Optimize video loading
-const optimizeVideo = () => {
-    const video = document.querySelector('video');
-    if (video) {
-        // Pause video when not in viewport
-        const videoObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    video.play().catch(() => {});
-                } else {
-                    video.pause();
-                }
-            });
-        }, { threshold: 0.5 });
-
-        videoObserver.observe(video);
-    }
-};
+// (removed) optimizeVideo: no longer needed since hero video was replaced with canvas
 
 // Handle form submission
 const setupForm = () => {
@@ -306,3 +260,173 @@ window.addEventListener('scroll', () => {
         }, 100);
     }
 }, { passive: true });
+
+// Hero Canvas Interactive Animation
+(function initializeHeroCanvasAnimation() {
+    const setupCanvas = () => {
+        const canvas = document.getElementById('hero-canvas');
+        if (!canvas) return null;
+        const context = canvas.getContext('2d');
+        const devicePixelRatio = window.devicePixelRatio || 1;
+
+        const resize = () => {
+            const container = canvas.parentElement;
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+            canvas.style.width = width + 'px';
+            canvas.style.height = height + 'px';
+            canvas.width = Math.floor(width * devicePixelRatio);
+            canvas.height = Math.floor(height * devicePixelRatio);
+        };
+
+        resize();
+        window.addEventListener('resize', resize);
+
+        return { canvas, context, devicePixelRatio };
+    };
+
+    function createParticleField(context, canvas, devicePixelRatio) {
+        const particles = [];
+        const pointer = { x: null, y: null, active: false };
+        const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+        // Slightly larger and fewer particles for clarity
+        const baseDensity = isMobile ? 0.00005 : 0.00006;
+        const area = (canvas.width * canvas.height) / (devicePixelRatio * devicePixelRatio);
+        const targetCount = Math.min(120, Math.max(50, Math.floor(area * baseDensity)));
+
+        const maxVelocity = isMobile ? 0.22 : 0.3;
+        const connectDistance = (isMobile ? 110 : 160) * devicePixelRatio;
+        const pointerInfluence = (isMobile ? 110 : 160) * devicePixelRatio;
+
+        for (let i = 0; i < targetCount; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * maxVelocity * devicePixelRatio,
+                vy: (Math.random() - 0.5) * maxVelocity * devicePixelRatio,
+                r: (Math.random() * 1.4 + 0.9) * devicePixelRatio
+            });
+        }
+
+        const handlePointerMove = (event) => {
+            let clientX, clientY;
+            if (event.touches && event.touches.length) {
+                clientX = event.touches[0].clientX;
+                clientY = event.touches[0].clientY;
+            } else {
+                clientX = event.clientX;
+                clientY = event.clientY;
+            }
+            const rect = canvas.getBoundingClientRect();
+            pointer.x = (clientX - rect.left) * devicePixelRatio;
+            pointer.y = (clientY - rect.top) * devicePixelRatio;
+            pointer.active = true;
+        };
+
+        const handlePointerLeave = () => {
+            pointer.active = false;
+        };
+
+        window.addEventListener('mousemove', handlePointerMove, { passive: true });
+        window.addEventListener('touchmove', handlePointerMove, { passive: true });
+        window.addEventListener('mouseleave', handlePointerLeave);
+        window.addEventListener('touchend', handlePointerLeave);
+
+        const draw = () => {
+            // Subtle gradient background wash
+            const gradient = context.createLinearGradient(0, 0, canvas.width, canvas.height);
+            gradient.addColorStop(0, 'rgba(0,0,0,0.55)');
+            gradient.addColorStop(1, 'rgba(0,0,0,0.35)');
+            context.fillStyle = gradient;
+            context.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Move and draw particles with soft glow
+            for (let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+
+                // Pointer attraction
+                if (pointer.active && pointer.x != null) {
+                    const dx = pointer.x - p.x;
+                    const dy = pointer.y - p.y;
+                    const dist = Math.hypot(dx, dy);
+                    if (dist < pointerInfluence && dist > 0.0001) {
+                        const force = (pointerInfluence - dist) / pointerInfluence;
+                        p.vx += (dx / dist) * force * 0.016 * devicePixelRatio;
+                        p.vy += (dy / dist) * force * 0.016 * devicePixelRatio;
+                    }
+                }
+
+                p.x += p.vx;
+                p.y += p.vy;
+
+                // Soft bounds
+                if (p.x <= 0 || p.x >= canvas.width) p.vx *= -1;
+                if (p.y <= 0 || p.y >= canvas.height) p.vy *= -1;
+
+                context.beginPath();
+                context.fillStyle = 'rgba(255,255,255,0.92)';
+                context.shadowColor = 'rgba(255,255,255,0.45)';
+                context.shadowBlur = 7 * devicePixelRatio;
+                context.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                context.fill();
+                context.shadowBlur = 0;
+            }
+
+            // Polished connections with thicker lines and alpha falloff
+            context.lineCap = 'round';
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.hypot(dx, dy);
+                    if (dist < connectDistance) {
+                        const alpha = 1 - dist / connectDistance;
+                        // Draw two-layer stroke for a refined look
+                        context.beginPath();
+                        context.strokeStyle = `rgba(255,255,255,${0.12 * alpha})`;
+                        context.lineWidth = 2 * devicePixelRatio;
+                        context.moveTo(particles[i].x, particles[i].y);
+                        context.lineTo(particles[j].x, particles[j].y);
+                        context.stroke();
+
+                        context.beginPath();
+                        context.strokeStyle = `rgba(255,255,255,${0.28 * alpha})`;
+                        context.lineWidth = 1 * devicePixelRatio;
+                        context.moveTo(particles[i].x, particles[i].y);
+                        context.lineTo(particles[j].x, particles[j].y);
+                        context.stroke();
+                    }
+                }
+            }
+
+            requestAnimationFrame(draw);
+        };
+
+        requestAnimationFrame(draw);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const ctx = setupCanvas();
+        if (ctx) {
+            createParticleField(ctx.context, ctx.canvas, ctx.devicePixelRatio);
+        }
+    });
+})();
+
+// Logo switching shared setup
+function setupLogoSwitcher() {
+    const logo = document.querySelector('.logo-img');
+    if (!logo) return;
+    const darkLogo = logo.getAttribute('data-logo-dark') || logo.src;
+    const lightLogo = logo.getAttribute('data-logo-light') || logo.src;
+    const apply = () => {
+        if (window.scrollY > 50) {
+            logo.src = lightLogo;
+        } else {
+            logo.src = darkLogo;
+        }
+    };
+    apply();
+    window.addEventListener('scroll', apply, { passive: true });
+}
