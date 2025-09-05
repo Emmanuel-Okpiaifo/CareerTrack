@@ -2,6 +2,9 @@
 
 A simple, static, multi-page website for CareerTrack. The site showcases programs, podcasts, and general information, using plain HTML, CSS, and JavaScript.
 
+## Live Site
+- Live Demo: [careertrac.netlify.app](https://careertrac.netlify.app/)
+
 ## Features
 - Responsive layout with modern typography and media
 - Multi-page structure: Home, About, Programs, Podcast

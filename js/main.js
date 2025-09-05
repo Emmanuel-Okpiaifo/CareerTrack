@@ -216,10 +216,34 @@ function typeWriter() {
     setTimeout(typeWriter, typingDelay);
 }
 
-// Start the typewriter effect when the page loads
-window.addEventListener('load', () => {
+// Start the typewriter effect when DOM is ready for faster perceived load
+document.addEventListener('DOMContentLoaded', () => {
     heroHeading.textContent = '';
     typeWriter();
+
+    // Defer hero video load slightly to avoid blocking first paint
+    const video = document.querySelector('#hero video');
+    if (video) {
+        // Hint to not load until idle
+        requestIdleCallback?.(() => {
+            // If source is not set dynamically, force-load after idle
+            if (video.preload !== 'metadata') {
+                video.preload = 'metadata';
+            }
+            // Attempt play when ready
+            const tryPlay = () => video.play().catch(() => {});
+            if (video.readyState >= 2) {
+                tryPlay();
+            } else {
+                video.addEventListener('loadeddata', tryPlay, { once: true });
+            }
+        }) || setTimeout(() => {
+            if (video.preload !== 'metadata') {
+                video.preload = 'metadata';
+            }
+            video.load();
+        }, 500);
+    }
 });
 
 // Animation on scroll
