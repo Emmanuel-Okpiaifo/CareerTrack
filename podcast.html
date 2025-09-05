@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="The Growth & Leadership Podcast - Real conversations with real leaders for real growth">
-    <title>The Growth & Leadership Podcast - GrowthPath</title>
+    <meta name="description" content="The CareerTrack Podcast - Conversations on skills, leadership, and career growth">
+    <title>Podcast - CareerTrack</title>
     
     <!-- Preload critical assets -->
     <link rel="preload" href="css/styles.css" as="style">
@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">    <!-- Add favicon -->
-    <link rel="icon" type="image/png" href="./img/Growthpath/Web icon-favicon/32x32 px.png">
+    <link rel="icon" type="image/svg+xml" href="./img/logos/ct-mark.svg">
     
     <!-- Main stylesheet -->
     <link rel="stylesheet" href="css/styles.css">
@@ -32,7 +32,7 @@
 <body>    <header>
         <nav>
             <a href="index.html" class="logo">
-                <img src="./img/Growthpath/PNGs/G3.png" alt="GrowthPath Logo" class="logo-img">
+                <img src="./img/logos/careertrack-logo-dark.svg" alt="CareerTrack Logo" class="logo-img" data-logo-dark="./img/logos/careertrack-logo-dark.svg" data-logo-light="./img/logos/careertrack-logo-light.svg">
             </a>
             <div class="nav-toggle" aria-label="Toggle navigation">
                 <span></span>
@@ -52,24 +52,24 @@
         <section id="podcast-hero">
             <div class="podcast-hero-image">
                 <img src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" 
-                     alt="The Growth & Leadership Podcast"
+                     alt="The CareerTrack Podcast"
                      loading="eager"
                      width="1920"
                      height="1080">
                 <div class="podcast-hero-overlay"></div>
             </div>
             <div class="podcast-hero-content">
-                <h1 class="animate-on-scroll">The Growth & Leadership Podcast</h1>
-                <p class="podcast-tagline animate-on-scroll">Real conversations. Real leaders. Real growth.</p>
+                <h1 class="animate-on-scroll">The CareerTrack Podcast</h1>
+                <p class="podcast-tagline animate-on-scroll">Practical conversations on skills, leadership, and career growth.</p>
             </div>
         </section>
 
         <section id="podcast-coming-soon">
             <div class="coming-soon-content">
                 <h2 class="animate-on-scroll">Coming Soon</h2>
-                <p class="animate-on-scroll">At GrowthPath, we believe powerful conversations create powerful change.</p>
-                <p class="animate-on-scroll">The Leadership & Growth Podcast brings you weekly insights on mindset, money, leadership, and personal growth — from those who are building and becoming.</p>
-                <p class="animate-on-scroll">Stay tuned for inspiring episodes and practical lessons to help you grow where it matters most.</p>
+                <p class="animate-on-scroll">At CareerTrack, we believe practical conversations spark real progress.</p>
+                <p class="animate-on-scroll">Each episode explores skills, leadership, and career development with actionable insights.</p>
+                <p class="animate-on-scroll">Stay tuned for interviews, frameworks, and tools to help you advance.</p>
                 
                 <form id="podcast-notify-form" class="notify-form animate-on-scroll">
                     <div class="form-group">
@@ -89,28 +89,29 @@
     <footer>
         <div class="footer-content">            <div class="footer-logo">
                 <a href="index.html">
-                    <img src="./img/Growthpath/PNGs/G8.png" alt="GrowthPath Logo" class="footer-logo-img">
+                    <img src="./img/logos/careertrack-logo-light.svg" alt="CareerTrack Logo" class="footer-logo-img">
                 </a>
             </div>
             <div class="footer-links">
                 <a href="about.html">About</a>
                 <a href="programs.html">Programs</a>
                 <a href="podcast.html">Podcast</a>
-                <a href="contact.html">Contact</a>
+                <a href="#contact">Contact</a>
             </div>
             <div class="contact-info">
-                <p>+14312945235</p>
-                <p>47 Big Blue Stem, Winnipeg MB, Canada</p>
+                <p>info@careertrack.com</p>
+                <p>+234-000-0000</p>
+                <p>123 Demo Street</p>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 GrowthPath. All rights reserved.</p>
+            <p>&copy; 2025 CareerTrack. All rights reserved.</p>
         </div>
     </footer>
 
     <div class="popup-overlay">
         <div class="popup-content">
-            <p class="popup-message">You will now be notified when the Growth and Leadership podcast goes live!</p>
+            <p class="popup-message">You will now be notified when the CareerTrack podcast goes live!</p>
         </div>
     </div>
 
@@ -156,16 +157,18 @@
             
             // Logo switching functionality
             const logo = document.querySelector('.logo-img');
+            const darkLogo = logo.getAttribute('data-logo-dark') || './img/logos/careertrack-logo-dark.svg';
+            const lightLogo = logo.getAttribute('data-logo-light') || './img/logos/careertrack-logo-light.svg';
             
             // Set initial logo based on scroll position
-            logo.src = window.scrollY > 50 ? './img/Growthpath/PNGs/G3.png' : './img/Growthpath/PNGs/G4.png';
+            logo.src = window.scrollY > 50 ? lightLogo : darkLogo;
             
             // Handle logo change on scroll
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 50) {
-                    logo.src = './img/Growthpath/PNGs/G3.png'; // Light logo for dark navbar
+                    logo.src = lightLogo; // Light logo for dark navbar
                 } else {
-                    logo.src = './img/Growthpath/PNGs/G4.png'; // Dark logo for light navbar
+                    logo.src = darkLogo; // Dark logo for light navbar
                 }
             });
         });
